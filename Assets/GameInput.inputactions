@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "GameInput",
+    "maps": [
+        {
+            "name": "PlatformMovement",
+            "id": "02e93bca-2c4f-45f5-b544-525a0ec1fc59",
+            "actions": [
+                {
+                    "name": "GetCoordinates",
+                    "type": "Value",
+                    "id": "6e9022f8-187a-470c-a1ab-8ab056293afa",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Press",
+                    "type": "Button",
+                    "id": "da83dbe1-133f-434c-8cc4-a43bf5a1d61c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1766869d-c16a-44b2-be12-d18376f4ac54",
+                    "path": "<Mouse>/position",
+                    "interactions": "Hold(duration=Infinity,pressPoint=0.01)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GetCoordinates",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "06dbe092-aa47-4631-9fca-c2fd7f0e8206",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
