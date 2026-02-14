@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class BlockState : MonoBehaviour
 {
+    public static event Action<bool> OnBlockDestroyed;
     public Sprite[] sprites;
     public SpriteRenderer blockSR;
     [SerializeField] private int state = 0;
@@ -16,7 +18,9 @@ public class BlockState : MonoBehaviour
         state--;
         if(state < 0)
         {
+            
             gameObject.SetActive(false);
+            OnBlockDestroyed?.Invoke(true);
         }
         else
         {

@@ -7,12 +7,12 @@ public class BallPhysics : MonoBehaviour
     void Start()
     {
         ballRB = GetComponent<Rigidbody2D>();
-        GameManager.OnGameStateChanged += StateChange;
+        OnGameStateChanged += StateChange;
     }
 
     private void OnDestroy()
     {
-        GameManager.OnGameStateChanged -= StateChange;
+        OnGameStateChanged -= StateChange;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,11 +27,11 @@ public class BallPhysics : MonoBehaviour
     {
         if (collision.CompareTag("LoseTrigger"))
         {
-            GameManager.instance.SetState(GameState.Lose);
+            instance.SetState(GameState.Lose);
         }
     }
 
-    private void StateChange(GameManager.GameState state)
+    private void StateChange(GameState state)
     {
         switch (state)
         {
