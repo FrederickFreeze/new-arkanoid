@@ -8,7 +8,7 @@ public class BlockState : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        state = Random.Range(0, 3);
+        //state = Random.Range(0, 3);
         blockSR.sprite = sprites[state];
     }
 
