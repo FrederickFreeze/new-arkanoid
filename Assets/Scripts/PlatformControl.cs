@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GameManager;
 
 public class Control : MonoBehaviour
 {
@@ -18,7 +19,13 @@ public class Control : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _gameInput = new GameInput();
         _gameInput.PlatformMovement.Press.started += ctx => _pressContinued = true;
-        _gameInput.PlatformMovement.Press.canceled += ctx => _pressContinued = false;
+        _gameInput.PlatformMovement.Press.canceled += ctx => { 
+            _pressContinued = false;
+            if (GameManager.instance.IsCurrentState(GameState.AwaitingStart))
+            {
+                GameManager.instance.SetState(GameState.Playing);
+            }
+        };
         _gameInput.Enable();
     }
 
