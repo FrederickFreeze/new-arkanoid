@@ -21,9 +21,9 @@ public class Control : MonoBehaviour
         _gameInput.PlatformMovement.Press.started += ctx => _pressContinued = true;
         _gameInput.PlatformMovement.Press.canceled += ctx => { 
             _pressContinued = false;
-            if (GameManager.instance.IsCurrentState(GameState.AwaitingStart))
+            if (instance.IsCurrentState(GameState.AwaitingStart))
             {
-                GameManager.instance.SetState(GameState.Playing);
+                instance.SetState(GameState.Playing);
             }
         };
         _gameInput.Enable();
