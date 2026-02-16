@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject[] ui_panels;
     public static event Action<GameState> OnGameStateChanged;
     public enum GameState
     {
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
         {
-            currentState = GameState.AwaitingStart;
+            SetState(GameState.AwaitingStart);
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -37,25 +38,34 @@ public class GameManager : MonoBehaviour
 
     public void SetState(GameState newState)
     {
-        ExitState(currentState);
         currentState = newState;
         EnterState(currentState);
         OnGameStateChanged?.Invoke(currentState);
     }
 
-    private void ExitState(GameState state)
-    {
-        
-    }
-
     private void EnterState(GameState state)
     {
-        
+        switch (state)
+        {
+            case GameState.AwaitingStart:
+                ui_panels[0].SetActive(true);
+                break;
+            case GameState.Playing:
+                ui_panels[0].SetActive(false);
+                break;
+            case GameState.Win:
+                ui_panels[1].SetActive(true);
+                break;
+            case GameState.Lose:
+                ui_panels[2].SetActive(true);
+                break;
+        }
     }
 
-    private void CountBlocks(bool isDestroyed)
+    private void CountBlocks(int count)
     {
-        if(FindObjectsByType<BlockState>(FindObjectsSortMode.None).Length <= 0)
+        Debug.Log($"{count}");
+        if (count <= 0)
         {
             SetState(GameState.Win);
             Debug.Log($"Победа");
